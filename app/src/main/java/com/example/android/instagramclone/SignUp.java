@@ -33,9 +33,13 @@ public class SignUp extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                allBoxers = "";
+                allBoxers = ""; // allBoxers is a private string created to store the retrieved data such that it can easily be displayed
 
                 ParseQuery<ParseObject> allQuery = ParseQuery.getQuery("Boxer");
+
+                allQuery.whereGreaterThan("punchSpeed", 100);
+                allQuery.setLimit(1);
+
                 allQuery.findInBackground(new FindCallback<ParseObject>() { // to get 1 object we write getInBackground
                     // but to get all the objects, we type findInBackground.
                     // Since it's findInBackground, starts with small f, in the parentheses, we write new and capital F, it autocomplet
